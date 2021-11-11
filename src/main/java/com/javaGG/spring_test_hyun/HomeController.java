@@ -49,29 +49,34 @@ public class HomeController {
 		return "list";
 	}
 	
+	@RequestMapping("/write")
+	public String write(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		dao.writeDao(request.getParameter("name"), request.getParameter("phone"), request.getParameter("addr"));
+		return "redirect:list";
+	}
+	
 	@RequestMapping("/writeForm")
 	public String writeForm(Model model) {
 		return "writeForm";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(HttpServletRequest request, Model model) {
+	@RequestMapping("modify")
+	public String modify(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.deleteDao(request.getParameter("id"));	
+		dao.modifyDao(request.getParameter("name"), request.getParameter("phone"), request.getParameter("addr"));
 		return "redirect:list";
 	}
 	
-	@RequestMapping("/modify")
-	public String modify(HttpServletRequest request, Model model) {
-		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.deleteDao(request.getParameter("id"));	
-		return "modify";
+	@RequestMapping("/modify_view")
+	public String view(Model model) {
+		return "modify_view";
 	}
 	
-	@RequestMapping("/write")
-	public String write(HttpServletRequest request, Model model) {
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.writeDao(request.getParameter("name"), request.getParameter("phone"), request.getParameter("addr"));
+		dao.deleteDao(request.getParameter("id"));
 		return "redirect:list";
 	}
 	

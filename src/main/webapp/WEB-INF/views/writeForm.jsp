@@ -14,7 +14,7 @@
 				<td><input type="text" name="name" size="65"></td>
 			</tr>
 			<tr>
-				<td>번호</td>
+				<td>전화번호</td>
 				<td><input type="text" name="phone" size="65"></td>
 			</tr>
 			<tr>

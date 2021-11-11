@@ -3,16 +3,16 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.javaGG.spring_test_hyun.dao.IDao">
-   <select id="listDao" resultType="com.javaGG.spring_test_hyun.dto">
+   <select id="listDao" resultType="com.javaGG.spring_test_hyun.dto.Dto">
       SELECT * FROM TESTTBL ORDER BY ID DESC
    </select>
    
    <select id="writeDao">
       INSERT INTO TESTTBL (ID, NAME, PHONE, ADDR) VALUES (BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3})
-   </select>   
+   </select>
    
    <select id="modifyDao">
-      UPDATE FROM TESTTBL WHERE ID = #{param1}
+ 	  UPDATE TESTTBL SET PHONE = #{param1}, ADDR = #{param2} WHERE ID = #{param3}
    </select>
    
    <select id="deleteDao">

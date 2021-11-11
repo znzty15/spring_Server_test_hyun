@@ -1,6 +1,6 @@
 package com.javaGG.spring_test_hyun.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Dto {
 	
@@ -8,7 +8,7 @@ public class Dto {
 	private String name;
 	private String phone;
 	private String addr;
-	private Timestamp tdate;
+	private Date tdate;
 	
 	public Dto() {
 		super();
@@ -47,11 +47,11 @@ public class Dto {
 		this.addr = addr;
 	}
 	
-	public Timestamp getTdate() {
+	public Date getTdate() {
 		return tdate;
 	}
 	
-	public void setTdate(Timestamp tdate) {
+	public void setTdate(Date tdate) {
 		this.tdate = tdate;
 	}	
 	
