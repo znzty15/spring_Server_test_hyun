@@ -69,7 +69,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/modify_view")
-	public String view(Model model) {
+	public String view(HttpServletRequest request, Model model) {
+		IDao dao = sqlSession.getMapper(IDao.class);
+		model.addAttribute("modify_view", dao.modify_viewDao(request.getParameter("id"), request.getParameter("name"), request.getParameter("phone"), request.getParameter("addr")));
 		return "modify_view";
 	}
 	

@@ -15,6 +15,12 @@
  	  UPDATE TESTTBL SET PHONE = #{param1}, ADDR = #{param2} WHERE ID = #{param3}
    </select>
    
+   <select id="modify_viewDao" resultType="com.javaGG.spring_test_hyun.dto.Dto">
+		SELECT * FROM TESTTBL WHERE ID = #{param1}
+	
+	</select>
+   
+   
    <select id="deleteDao">
       DELETE FROM TESTTBL WHERE ID = #{param1}
    </select>
