@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.javaGG.spring_test_hyun.dao.IDao">
-   <select id="listDao" resultType="com.javaGG.spring_test_hyun.dto.Dto">
-      SELECT * FROM TESTTBL ORDER BY ID DESC
-   </select>
-   
-   <select id="writeDao">
-      INSERT INTO TESTTBL (ID, NAME, PHONE, ADDR) VALUES (BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3})
-   </select>
-   
-   <select id="modifyDao">
- 	  UPDATE TESTTBL SET PHONE = #{param1}, ADDR = #{param2} WHERE ID = #{param3}
-   </select>
-   
-   <select id="modify_viewDao" resultType="com.javaGG.spring_test_hyun.dto.Dto">
-		SELECT * FROM TESTTBL WHERE ID = #{param1}
-	
+	<select id="listDao" resultType="com.javaGG.spring_test_hyun.dto.Dto">
+		SELECT * FROM TESTTBL ORDER BY ID DESC
 	</select>
-   
-   
-   <select id="deleteDao">
-      DELETE FROM TESTTBL WHERE ID = #{param1}
-   </select>
-   
+
+	<select id="writeDao">
+		INSERT INTO TESTTBL (ID, NAME, PHONE1, PHONE2, PHONE3, ADDR) VALUES (BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+	</select>
+
+	<select id="modifyDao">
+		UPDATE TESTTBL SET PHONE1 = #{param1}, PHONE2 = #{param2}, PHONE3 = #{param3}, ADDR = #{param4} WHERE ID = #{param5}
+	</select>
+
+	<select id="modify_viewDao"	resultType="com.javaGG.spring_test_hyun.dto.Dto">
+		SELECT * FROM TESTTBL WHERE ID = #{param1}
+	</select>
+
+	<select id="deleteDao">
+		DELETE FROM TESTTBL WHERE ID = #{param1}
+	</select>
+	
 </mapper>

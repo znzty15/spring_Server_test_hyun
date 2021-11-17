@@ -16,18 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaGG.spring_test_hyun.dao.IDao;
+import com.javaGG.spring_test_hyun.dto.Dto;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-
+	int rcount;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -38,10 +39,14 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
-		
 		return "home";
 	}
-	
+
+	@RequestMapping("/index")
+	public String index(Model model) {
+		return "index";
+	}
+
 	@RequestMapping("/list")
 	public String list(Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
@@ -52,34 +57,34 @@ public class HomeController {
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.writeDao(request.getParameter("name"), request.getParameter("phone"), request.getParameter("addr"));
+		dao.writeDao(request.getParameter("name"), request.getParameter("phone1"), request.getParameter("phone2"), request.getParameter("phone3"), request.getParameter("addr"));
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping("/writeForm")
 	public String writeForm(Model model) {
 		return "writeForm";
 	}
-	
+
 	@RequestMapping("modify")
 	public String modify(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.modifyDao(request.getParameter("name"), request.getParameter("phone"), request.getParameter("addr"));
+		dao.modifyDao(request.getParameter("phone1"), request.getParameter("phone2"), request.getParameter("phone3"), request.getParameter("addr"), request.getParameter("id"));
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping("/modify_view")
 	public String view(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
-		model.addAttribute("modify_view", dao.modify_viewDao(request.getParameter("id"), request.getParameter("name"), request.getParameter("phone"), request.getParameter("addr")));
+		model.addAttribute("modify_view", dao.modify_viewDao(request.getParameter("id"), request.getParameter("name"), request.getParameter("phone1"), request.getParameter("phone2"), request.getParameter("phone3"), request.getParameter("addr")));
 		return "modify_view";
 	}
-	
+
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request, Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		dao.deleteDao(request.getParameter("id"));
 		return "redirect:list";
 	}
-	
+
 }
